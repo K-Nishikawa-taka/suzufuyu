@@ -1,0 +1,10 @@
+<div>
+  <%= attachment_image_tag @ship_image, :image %>
+  <p>船名：<%= @ship_image.ship_name %></p>
+  <p>説明：<%= @ship_image.caption %></p>
+  <p>提督名：<%= @ship_image.admiral.name %></p>
+  <p>更新日時：<%= @ship_image.created_at.strftime('%Y/%m/%d') %></p>
+  <% if @ship_image.admiral == current_admiral %>
+    <%= link_to '削除', ship_image_path(@ship_image), method: :delete %>
+  <% end %>
+</div>
