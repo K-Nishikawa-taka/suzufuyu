@@ -12,11 +12,12 @@ class ShipImagesController < ApplicationController
   end
 
   def index
-    @ship_images = ShipImage.all
+    @ship_images = ShipImage.page(params[:page]).reverse_order
   end
 
   def show
     @ship_image = ShipImage.find(params[:id])
+    @ship_comment = ShipComment.new
   end
 
   def destroy

@@ -5,5 +5,7 @@ class Admiral < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   has_many :ship_images, dependent: :destroy
+  has_many :ship_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   
 end

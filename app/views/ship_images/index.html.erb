@@ -7,5 +7,7 @@
     <p>船名：<%= ship_image.ship_name %></p>
     <p>説明：<%= ship_image.caption %></p>
     <p>提督名：<%= ship_image.admiral.name %></p>
+    <p><%= link_to "#{ship_image.ship_comments.count} コメント", ship_image_path(ship_image.id) %></p>
   </div>
 <% end %>
+<%= paginate @ship_images %>

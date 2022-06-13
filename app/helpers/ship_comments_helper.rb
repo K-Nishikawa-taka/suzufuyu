@@ -1,0 +1,2 @@
+module ShipCommentsHelper
+end

@@ -1,0 +1,2 @@
+module AdmiralsHelper
+end

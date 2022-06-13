@@ -8,3 +8,37 @@
     <%= link_to '削除', ship_image_path(@ship_image), method: :delete %>
   <% end %>
 </div>
+
+<div>
+  <p>コメント件数：<%= @ship_image.ship_comments.count %></p>
+  <% @ship_image.ship_comments.each do |ship_comment| %>
+    <p><%= image_tag('sample-author1.jpg') %></p>
+    <%= ship_comment.admiral.name %>
+    <%= ship_comment.created_at.strftime('%Y/%m/%d') %><%= ship_comment.comment %>
+    <% if ship_comment.admiral == current_admiral %>
+      <div>
+        <%= link_to "削除", ship_image_ship_comment_path(ship_comment.ship_image, ship_comment), method: :delete %>
+      </div>
+    <% end %>
+  <% end %>
+  <% if @ship_image.favorited_by?(current_admiral) %>
+    <p>
+      <%= link_to ship_image_favorites_path(@ship_image), method: :delete do %>
+        ♥<%= @ship_image.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% else %>
+    <p>
+      <%= link_to ship_image_favorites_path(@ship_image), method: :post do %>
+        ♡<%= @ship_image.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+</div>
+
+<div>
+  <%= form_with(model:[@ship_image, @ship_comment], local: true) do |f| %>
+    <%= f.text_area :comment, rows:'5', placeholder:'コメントをここに' %>
+    <%= f.submit '送信する' %>
+  <% end %>
+</div>
